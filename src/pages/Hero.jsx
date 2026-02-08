@@ -1,141 +1,182 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Download, Mail } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Instagram, Mail, Download, Code, Trophy, Star, Zap } from "lucide-react";
+import FloatingCard from "../components/FloatingCard";
 
-const Hero = () => {
-  const [text, setText] = useState('');
-  const fullText = "AI & Web Developer | Building Smart Solutions";
-  const [index, setIndex] = useState(0);
+const roles = [
+  "Machine Learning Enthusiast",
+  "Full Stack Developer",
+  "React Developer",
+  "Data Science ",
+];
 
+export default function Hero() {
+  const [text, setText] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+
+  // Typing effect
   useEffect(() => {
-    if (index < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText((prev) => prev + fullText.charAt(index));
-        setIndex((prev) => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [index]);
+    const currentRole = roles[roleIndex];
+    const typing = setTimeout(() => {
+      if (charIndex < currentRole.length) {
+        setText((prev) => prev + currentRole[charIndex]);
+        setCharIndex(charIndex + 1);
+      } else {
+        setTimeout(() => {
+          setText("");
+          setCharIndex(0);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 1500);
+      }
+    }, 60);
+    return () => clearTimeout(typing);
+  }, [charIndex, roleIndex]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Organic Background Elements */}
-      <div className="absolute top-20 left-[-100px] w-96 h-96 bg-primary-200/50 dark:bg-primary-900/20 organic-blob mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-float"></div>
-      <div className="absolute bottom-20 right-[-100px] w-96 h-96 bg-secondary-200/50 dark:bg-secondary-900/20 organic-blob mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-float animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cream-100/50 dark:bg-dark-800/50 rounded-full blur-[100px] -z-10"></div>
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-cream-50 dark:bg-dark-900 transition-colors duration-300">
+      
+      {/* Background blobs matching Fresh Nature theme */}
+      <div className="absolute top-20 left-[-100px] w-96 h-96 bg-primary-200/40 dark:bg-primary-900/20 rounded-full blur-3xl opacity-60 animate-blob"></div>
+      <div className="absolute bottom-20 right-[-100px] w-96 h-96 bg-secondary-200/40 dark:bg-secondary-900/20 rounded-full blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
 
-      <div className="container mx-auto px-4 z-10 flex flex-col md:flex-row items-center justify-between">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
-        >
-          <span className="inline-block py-2 px-4 rounded-full bg-white dark:bg-dark-800 border border-primary-200 dark:border-primary-900 text-primary-700 dark:text-primary-300 text-sm font-medium mb-6 shadow-sm">
-            👋 Hello, I'm
-          </span>
-          <h1 className="text-5xl md:text-7xl font-bold font-display mb-6 text-accent-900 dark:text-cream-50 leading-tight">
-            Ganesh <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">Beldar</span>
-          </h1>
-          <div className="h-8 md:h-12 mb-8">
-            <span className="text-xl md:text-2xl font-mono text-accent-600 dark:text-accent-300 font-medium tracking-wide">
-              {text}
-              <span className="animate-blink text-primary-500">|</span>
-            </span>
-          </div>
-          <p className="text-accent-700 dark:text-cream-200 text-lg mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed font-sans">
-            A passionate Computer Engineering student specializing in AI & Data Science. 
-            I build modern web applications and <span className="font-semibold text-primary-600 dark:text-primary-400">intelligent systems</span> that solve real problems.
-          </p>
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center pt-24 pb-12">
+
+        {/* 5) Mobile responsive: Profile image at top center (order-first on mobile) */}
+        <div className="order-1 lg:order-2 flex flex-col items-center justify-center relative">
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          {/* RIGHT SIDE (Visual Area) */}
+          <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+             {/* Spinning rings with Theme Colors */}
+             <div className="absolute inset-0 rounded-full border-2 border-primary-500/30 dark:border-primary-400/20 animate-[spin_10s_linear_infinite]"></div>
+             <div className="absolute inset-4 rounded-full border-2 border-secondary-500/30 dark:border-secondary-400/20 animate-[spin_15s_linear_infinite_reverse]"></div>
+             
+             {/* Main Image */}
+             <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-2xl shadow-primary-900/10 z-10 bg-cream-100 dark:bg-dark-800">
+               <img 
+                 src="/images/Ganesh.jpeg"
+                 alt="Ganesh Beldar" 
+                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+               />
+             </div>
+
+             {/* Floating Cards (Desktop) */}
+             <div className="hidden lg:block">
+                <FloatingCard 
+                   icon={<Trophy size={18} />} 
+                   title="Hackathons" 
+                   subtitle="5+ Final" 
+                   className="-top-4 left-0 z-20"
+                   delay={0}
+                />
+                <FloatingCard 
+                   icon={<Star size={18} />} 
+                   title="CGPA" 
+                   subtitle="8.75" 
+                   className="top-10 -right-8 z-20"
+                   delay={1}
+                />
+                <FloatingCard 
+                   icon={<Code size={18} />} 
+                   title="Projects" 
+                   subtitle="10+ Live" 
+                   className="bottom-10 -left-6 z-20"
+                   delay={2}
+                />
+                <FloatingCard 
+                   icon={<Zap size={18} />} 
+                   title="Skills" 
+                   subtitle="Full Stack" 
+                   className="-bottom-6 right-0 z-20"
+                   delay={1.5}
+                />
+             </div>
+          </div>
+
+          {/* Mobile Grid Cards */}
+          <div className="grid grid-cols-2 gap-4 mt-8 lg:hidden w-full max-w-md">
+             {[
+               { icon: Trophy, label: "Hackathons", val: "5+ Wins" },
+               { icon: Star, label: "GPA", val: "9.18" },
+               { icon: Code, label: "Projects", val: "10+ Live" },
+               { icon: Zap, label: "Skills", val: "Full Stack" }
+             ].map(({ icon: Icon, label, val }, i) => (
+               <div key={i} className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm p-3 rounded-xl shadow-sm border border-primary-100 dark:border-primary-900/30 flex items-center gap-3">
+                  <div className="p-2 bg-primary-100 dark:bg-primary-900/50 rounded-lg text-primary-600 dark:text-primary-400"><Icon size={16}/></div>
+                  <div><div className="text-xs font-bold text-accent-500 dark:text-accent-400">{label}</div><div className="text-sm font-bold text-accent-900 dark:text-cream-50">{val}</div></div>
+               </div>
+             ))}
+          </div>
+
+        </div>
+
+        {/* LEFT SIDE (Main Content Area) */}
+        <motion.div
+           initial={{ opacity: 0, x: -50 }}
+           animate={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.8 }}
+           className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
+        >
+          <span className="text-lg font-bold text-primary-600 dark:text-primary-400 mb-2 tracking-wide uppercase text-sm">Hello, I'm</span>
+          
+          <h1 className="text-5xl md:text-7xl font-bold font-display mb-4 text-accent-900 dark:text-cream-50 leading-tight">
+            Ganesh <br className="md:hidden"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">Beldar</span>
+          </h1>
+
+          {/* Animated role text */}
+          <div className="h-8 mb-6">
+             <span className="text-xl md:text-2xl font-mono text-accent-600 dark:text-accent-300">
+               <span className="font-semibold">{text}</span>
+               <span className="animate-pulse text-primary-500 ml-1">|</span>
+             </span>
+          </div>
+
+          <p className="text-accent-700 dark:text-cream-200 text-base md:text-lg mb-8 max-w-lg leading-relaxed font-medium">
+            A passionate <span className="text-primary-700 dark:text-primary-300">Artificial Intelligence & Data Science student</span> and AI enthusiast. 
+            As the President of the AI Club, I conduct workshops and guide students in learning AI and development.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
             <a 
               href="#contact" 
-              className="px-8 py-3.5 rounded-xl bg-accent-700 hover:bg-accent-800 text-white font-medium shadow-lg shadow-accent-700/20 hover:shadow-accent-700/30 hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+              className="px-8 py-3.5 rounded-full bg-accent-900 hover:bg-accent-800 text-white font-bold shadow-lg shadow-accent-900/20 hover:scale-105 hover:shadow-accent-900/30 transition-all flex items-center gap-2"
             >
               Contact Me <Mail size={18} />
             </a>
             <a 
               href="/resume.pdf" 
               download
-              className="px-8 py-3.5 rounded-xl bg-white dark:bg-dark-800 border-2 border-primary-100 dark:border-dark-700 hover:border-primary-300 dark:hover:border-primary-700 text-accent-800 dark:text-cream-100 font-medium transition-all flex items-center justify-center gap-2 group"
+              className="px-8 py-3.5 rounded-full bg-transparent border-2 border-primary-200 dark:border-primary-800 hover:border-primary-500 dark:hover:border-primary-400 text-accent-800 dark:text-cream-100 font-bold hover:scale-105 transition-all flex items-center gap-2 group"
             >
-              Download CV <Download size={18} className="group-hover:translate-y-1 transition-transform" />
+              Resume <Download size={18} className="group-hover:translate-y-1 transition-transform" />
             </a>
           </div>
-        </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-          className="md:w-1/2 flex justify-center relative"
-        >
-          <div className="relative w-64 h-64 md:w-96 md:h-96">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary-300 to-secondary-300 dark:from-primary-900 dark:to-secondary-900 organic-blob opacity-60 animate-pulse-slow rotate-12"></div>
-            <div className="absolute inset-4 bg-white dark:bg-dark-800 organic-blob shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white dark:border-dark-700">
-               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80" 
-                alt="Ganesh Beldar" 
-                className="w-full h-full object-cover scale-110"
-              />
-            </div>
-            
-            {/* Floating Cards with Soft Shadow */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -top-4 -right-2 bg-white dark:bg-dark-800 px-5 py-3 rounded-2xl text-sm font-medium flex items-center gap-3 soft-shadow border border-primary-50 dark:border-dark-700"
-            >
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-accent-800 dark:text-cream-100">Open to Work</span>
-            </motion.div>
-            
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-8 -left-4 bg-white dark:bg-dark-800 px-5 py-3 rounded-2xl text-sm font-medium flex items-center gap-3 soft-shadow border border-primary-50 dark:border-dark-700"
-            >
-              <div className="bg-primary-100 dark:bg-primary-900/30 p-1.5 rounded-lg text-primary-700 dark:text-primary-300 font-bold">5+</div>
-              <span className="text-accent-800 dark:text-cream-100">Projects Completed</span>
-            </motion.div>
+{/* Social icons */}
+          <div className="flex gap-4">
+             {[
+               { Icon: Github, href: "https://github.com/Ganeshbeldar015" },
+               { Icon: Linkedin, href: "https://www.linkedin.com/in/ganesh-bhaktaraj-beldar-00589335b/" },
+               { Icon: Instagram, href: "https://www.instagram.com/mr_ganu_kumavat_07/" },
+               { Icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=ganeshbeldar.ug@gmail.com" }
+             ].map(({ Icon, href }, i) => (
+               <a 
+                 key={i} 
+                 href={href}
+                 target={href.startsWith("http") ? "_blank" : "_self"}
+                 rel={href.startsWith("http") ? "noopener noreferrer" : ""}
+                 className="p-3 bg-white dark:bg-dark-800 rounded-full border border-primary-100 dark:border-dark-700 text-accent-500 hover:text-primary-600 dark:hover:text-primary-400 hover:shadow-md hover:scale-110 active:scale-95 transition-all"
+               >
+                 <Icon size={20} />
+               </a>
+             ))}
           </div>
+
         </motion.div>
+
       </div>
-
-      {/* Achievements Badges */}
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="container mx-auto px-4 mt-8 md:mt-16 pb-12 flex flex-col items-center gap-4 z-20 relative"
-      >
-        {/* Row 1 */}
-        <div className="px-8 py-3 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-bold shadow-lg shadow-primary-500/30 hover:scale-105 transition-transform cursor-default">
-          5+ Hackathons (final round)
-        </div>
-        
-        {/* Row 2 */}
-        <div className="px-8 py-3 rounded-full bg-gradient-to-r from-secondary-400 to-secondary-600 text-white font-bold shadow-lg shadow-secondary-500/30 text-center max-w-3xl hover:scale-105 transition-transform cursor-default leading-relaxed">
-          Runner up + Best innovation in Reva university, Baguluru National Hackathon
-        </div>
-
-        {/* Row 3 */}
-        <div className="flex flex-wrap justify-center gap-4">
-           <div className="px-8 py-3 rounded-full bg-gradient-to-r from-accent-400 to-accent-600 text-white font-bold shadow-lg hover:scale-105 transition-transform cursor-default">
-             FE-CGPA: 9.18
-           </div>
-           <div className="px-8 py-3 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-bold shadow-lg hover:scale-105 transition-transform cursor-default">
-             10+ Projects
-           </div>
-           <div className="px-8 py-3 rounded-full bg-gradient-to-r from-secondary-400 to-secondary-600 text-white font-bold shadow-lg hover:scale-105 transition-transform cursor-default flex flex-col items-center leading-tight">
-             Member of ACES
-             <span className="text-[10px] font-normal opacity-90">(Association of Comp. Engg. Students)</span>
-           </div>
-        </div>
-      </motion.div>
     </section>
   );
-};
-
-export default Hero;
+}

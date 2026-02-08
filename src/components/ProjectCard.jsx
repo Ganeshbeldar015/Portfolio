@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code } from 'lucide-react';
+import { Github, ExternalLink, Code, Folder } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
   return (
@@ -16,24 +16,7 @@ const ProjectCard = ({ project }) => {
           alt={project.title} 
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-          <a 
-            href={project.github} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-white/90 dark:bg-dark-900/90 rounded-full text-accent-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors shadow-lg"
-          >
-            <Github size={18} />
-          </a>
-          <a 
-            href={project.demo} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-white/90 dark:bg-dark-900/90 rounded-full text-accent-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors shadow-lg"
-          >
-            <ExternalLink size={18} />
-          </a>
-        </div>
+
       </div>
 
       <div className="p-8 flex flex-col flex-grow">
@@ -52,6 +35,25 @@ const ProjectCard = ({ project }) => {
                 {tag}
               </span>
             ))}
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <a 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-dark-700 text-accent-700 dark:text-cream-200 font-bold hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors"
+            >
+              <Github size={18} /> GitHub
+            </a>
+            <a 
+              href={project.demo} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-lg shadow-primary-600/20 transition-all hover:-translate-y-0.5"
+            >
+              <ExternalLink size={18} /> Demo
+            </a>
           </div>
         </div>
       </div>

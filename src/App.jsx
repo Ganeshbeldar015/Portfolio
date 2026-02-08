@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './pages/Hero';
-import About from './pages/About';
+
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Certifications from './pages/Certifications';
@@ -35,7 +35,7 @@ function App() {
         <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
         <main>
           <Hero />
-          <About />
+
           <Skills />
           <Projects />
           <Certifications />

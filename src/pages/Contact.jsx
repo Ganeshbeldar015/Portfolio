@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 2000);
+    setSubmitStatus(null);
+
+    // Credentials from your latest update
+    const serviceID = 'service_x5ekus9';
+    const templateID = 'template_otnpq6q';
+    const publicKey = 'gHCvzV205etMxcPS9';
+
+    emailjs.sendForm(serviceID, templateID, form.current, {
+      publicKey: publicKey,
+    })
+      .then((result) => {
+        setIsSubmitting(false);
+        setSubmitStatus('success');
+        form.current.reset(); // Clear the form
+        setTimeout(() => setSubmitStatus(null), 5000);
+      }, (error) => {
+        console.log(error.text);
+        setIsSubmitting(false);
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus(null), 5000);
+      });
   };
 
   const contactInfo = [
-    { icon: <Mail size={24} />, title: "Email", value: "ganesh.beldar@example.com", link: "mailto:ganesh.beldar@example.com", color: "text-primary-600 bg-primary-100" },
-    { icon: <Phone size={24} />, title: "Phone", value: "+91 98765 43210", link: "tel:+919876543210", color: "text-secondary-600 bg-secondary-100" },
+    { icon: <Mail size={24} />, title: "Email", value: "ganeshbeldar.ug@gmail.com", link: "mailto:ganeshbeldar.ug@gmail.com", color: "text-primary-600 bg-primary-100" },
+    { icon: <Phone size={24} />, title: "Phone", value: "+91 8010892530", link: "tel:+918010892530", color: "text-secondary-600 bg-secondary-100" },
     { icon: <MapPin size={24} />, title: "Location", value: "Pune, Maharashtra, India", link: "#", color: "text-accent-600 bg-accent-100" }
   ];
 
@@ -88,32 +94,28 @@ const Contact = () => {
             viewport={{ once: true }}
             className="lg:w-2/3"
           >
-            <form onSubmit={handleSubmit} className="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-white/50 dark:border-dark-700 soft-shadow">
+            <form ref={form} onSubmit={sendEmail} className="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-white/50 dark:border-dark-700 soft-shadow">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Name</label>
+                  <label htmlFor="user_name" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Name</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    id="user_name"
+                    name="user_name"
                     required
                     className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white"
-                    placeholder="John Doe"
+                    placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Email</label>
+                  <label htmlFor="user_email" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Email</label>
                   <input
                     type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    id="user_email"
+                    name="user_email"
                     required
                     className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white"
-                    placeholder="john@example.com"
+                    placeholder="your.email@example.com"
                   />
                 </div>
               </div>
@@ -123,8 +125,6 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows="5"
                   className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white resize-none"
@@ -142,13 +142,17 @@ const Contact = () => {
                     <Loader2 size={20} className="animate-spin" /> Sending...
                   </>
                 ) : submitStatus === 'success' ? (
-                  <>Message Sent!</>
+                  <>Message Sent! <span className="ml-1">✅</span></>
                 ) : (
                   <>
                     Send Message <Send size={20} />
                   </>
                 )}
               </button>
+              
+              {submitStatus === 'error' && (
+                <p className="text-red-500 text-center mt-4">Failed to send message. Please try again.</p>
+              )}
             </form>
           </motion.div>
         </div>

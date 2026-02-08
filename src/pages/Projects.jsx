@@ -6,21 +6,21 @@ const Projects = () => {
   const projects = [
 
     {
-      id: 3,
-      title: "Portfolio Website",
-      description: "A modern, responsive personal portfolio highlighting skills and projects with smooth animations and a fresh nature-inspired theme.",
-      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1555&q=80",
-      tags: ["React", "Tailwind CSS", "Framer Motion"],
-      github: "#",
-      demo: "#"
+      id: 1,
+      title: "MediConnect - A Role-Based Healthcare Platform",
+      description: "A secure healthcare management system ensuring verified doctor onboarding, identity-bound prescriptions, real-time appointments, and strict role-based access using Firebase Auth + Firestore.",
+      image: "/images/hc.png",
+      tags: ["React+Vite","Supabase", "Tailwind CSS", "Framer Motion", "Razopay", "API Integration", "Node.js", "Express.js","PostgreSQL","Cloud Technologies","AI Intrrest evaluation models","Feed feature with persnalised suggestions"],
+      github: "https://github.com/Ganeshbeldar015/HealthCare",
+      demo: "https://mediconnect-dr.vercel.app/"
     },
      {
-      id: 4,
+      id: 2, 
       title: "Portfolio Website",
       description: "A modern, responsive personal portfolio highlighting skills and projects with smooth animations and a fresh nature-inspired theme.",
-      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1555&q=80",
-      tags: ["React", "Tailwind CSS", "Framer Motion"],
-      github: "#",
+      image: "/images/image.png",
+      tags: ["React+Vite", "Tailwind CSS", "Framer-motion"],
+      github: "https://github.com/Ganeshbeldar015/Portfolio",
       demo: "#"
     }
   ];
@@ -58,7 +58,7 @@ const Projects = () => {
         
         <div className="mt-16 text-center">
           <a 
-            href="https://github.com/ganeshbeldar" 
+            href="https://github.com/Ganeshbeldar015" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-cream-100 dark:bg-dark-700 text-accent-800 dark:text-cream-100 font-medium border border-primary-200 dark:border-dark-600 hover:bg-primary-100 dark:hover:bg-dark-600 transition-colors"

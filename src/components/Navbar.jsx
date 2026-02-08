@@ -15,7 +15,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
 
   const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
+    // { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
@@ -31,7 +31,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <a href="#" className="text-2xl font-bold font-display text-accent-700 dark:text-cream-100">
-              GB<span className="text-primary-500">.</span>
+              Ganesh Beldar <span className="text-primary-500">.</span>
             </a>
           </div>
           

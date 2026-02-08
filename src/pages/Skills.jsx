@@ -5,7 +5,7 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Programming",
-      skills: ["Python", "Java", "C++", "JavaScript", "SQL", "TypeScript"],
+      skills: ["Python", "Java", "C++", "JavaScript", "SQL", ],
       color: "bg-primary-100 text-primary-800 border-primary-200 dark:bg-primary-900/30 dark:text-primary-300 dark:border-primary-800"
     },
     {
@@ -20,7 +20,7 @@ const Skills = () => {
     },
     {
       title: "Tools & Platforms",
-      skills: ["Git", "GitHub", "VS Code", "Jupyter", "Firebase", "Postman", "Vercel"],
+      skills: ["Git", "GitHub", "VS Code", "Jupyter", "Firebase", "Postman", "Vercel" ,"Supabase"],
       color: "bg-cream-200 text-accent-800 border-cream-300 dark:bg-dark-700 dark:text-cream-200 dark:border-dark-600"
     }
   ];
@@ -43,7 +43,7 @@ const Skills = () => {
             Technical Skills
           </h2>
           <p className="max-w-2xl mx-auto text-accent-700 dark:text-cream-200 font-sans">
-            A comprehensive toolkit that enables me to build end-to-end solutions, from intelligent algorithms to responsive user interfaces.
+           I use these technologies to build AI projects and modern web applications from backend logic to user interface.
           </p>
         </motion.div>
 
