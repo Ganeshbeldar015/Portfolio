@@ -14,16 +14,16 @@ const Footer = () => {
           </div>
           
           <div className="flex gap-6">
-            <a href="#" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
+            <a href="https://github.com/Ganeshbeldar015" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
               <Github size={20} />
             </a>
-            <a href="#" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
+            <a href="https://www.linkedin.com/in/ganesh-bhaktaraj-beldar-00589335b/" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
+            {/* <a href="#" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
               <Twitter size={20} />
-            </a>
-            <a href="mailto:ganesh.beldar@example.com" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
+            </a> */}
+            <a href="mailto:ganeshbeldar.ug@gmail.com" className="text-accent-600 dark:text-cream-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors bg-white dark:bg-dark-800 p-3 rounded-full soft-shadow hover:-translate-y-1">
               <Mail size={20} />
             </a>
           </div>
