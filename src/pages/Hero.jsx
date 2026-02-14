@@ -146,8 +146,9 @@ export default function Hero() {
               Contact Me <Mail size={18} />
             </a>
             <a 
-              href="/resume.pdf" 
-              download
+              href="https://drive.google.com/file/d/1vzDpiHd9q-NBuNZfyayamt91ej4CMCAq/view?usp=sharing" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-full bg-transparent border-2 border-primary-200 dark:border-primary-800 hover:border-primary-500 dark:hover:border-primary-400 text-accent-800 dark:text-cream-100 font-bold hover:scale-105 transition-all flex items-center gap-2 group"
             >
               Resume <Download size={18} className="group-hover:translate-y-1 transition-transform" />
