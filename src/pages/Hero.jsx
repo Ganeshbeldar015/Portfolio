@@ -153,7 +153,7 @@ export default function Hero() {
               Contact Me <Mail size={18} />
             </a>
             <a
-              href="https://drive.google.com/file/d/1vzDpiHd9q-NBuNZfyayamt91ej4CMCAq/view?usp=sharing"
+              href="/images/Ganesh Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-full bg-transparent border-2 border-linen-400 dark:border-dark-600 hover:border-primary-400 dark:hover:border-primary-500 text-claude-800 dark:text-linen-100 font-semibold hover:scale-105 transition-all flex items-center gap-2 group"
