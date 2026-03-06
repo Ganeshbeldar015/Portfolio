@@ -14,7 +14,7 @@ import Preloader from './components/Preloader';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function App() {
         {!isLoaded && <Preloader onComplete={handlePreloaderComplete} />}
       </AnimatePresence>
       
-      <div className={`min-h-screen bg-white dark:bg-dark-900 text-slate-900 dark:text-white transition-colors duration-300 ${!isLoaded ? 'overflow-hidden' : ''}`}>
+      <div className={`min-h-screen bg-linen-100 dark:bg-dark-900 text-claude-950 dark:text-linen-100 transition-colors duration-300 ${!isLoaded ? 'overflow-hidden' : ''}`}>
         <ScrollProgress />
         <ScrollToTop />
         <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />

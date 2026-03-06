@@ -13,18 +13,15 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Credentials from your latest update
     const serviceID = 'service_x5ekus9';
     const templateID = 'template_otnpq6q';
     const publicKey = 'gHCvzV205etMxcPS9';
 
-    emailjs.sendForm(serviceID, templateID, form.current, {
-      publicKey: publicKey,
-    })
-      .then((result) => {
+    emailjs.sendForm(serviceID, templateID, form.current, { publicKey })
+      .then(() => {
         setIsSubmitting(false);
         setSubmitStatus('success');
-        form.current.reset(); // Clear the form
+        form.current.reset();
         setTimeout(() => setSubmitStatus(null), 5000);
       }, (error) => {
         console.log(error.text);
@@ -35,99 +32,119 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: <Mail size={24} />, title: "Email", value: "ganeshbeldar.ug@gmail.com", link: "mailto:ganeshbeldar.ug@gmail.com", color: "text-primary-600 bg-primary-100" },
-    { icon: <Phone size={24} />, title: "Phone", value: "+91 8010892530", link: "tel:+918010892530", color: "text-secondary-600 bg-secondary-100" },
-    { icon: <MapPin size={24} />, title: "Location", value: "Pune, Maharashtra, India", link: "#", color: "text-accent-600 bg-accent-100" }
+    {
+      icon: <Mail size={24} />,
+      title: "Email",
+      value: "ganeshbeldar.ug@gmail.com",
+      link: "mailto:ganeshbeldar.ug@gmail.com",
+      color: "text-primary-600 bg-primary-100 dark:bg-primary-900/30 dark:text-primary-400"
+    },
+    {
+      icon: <Phone size={24} />,
+      title: "Phone",
+      value: "+91 8010892530",
+      link: "tel:+918010892530",
+      color: "text-secondary-600 bg-secondary-100 dark:bg-secondary-900/30 dark:text-secondary-400"
+    },
+    {
+      icon: <MapPin size={24} />,
+      title: "Location",
+      value: "Pune, Maharashtra, India",
+      link: "#",
+      color: "text-claude-600 bg-linen-200 dark:bg-dark-700 dark:text-linen-300"
+    }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-slate-50 dark:bg-dark-800 transition-colors duration-300">
-      <div className="container mx-auto px-4">
-        <motion.div 
+    <section id="contact" className="py-20 bg-linen-50 dark:bg-dark-800 transition-colors duration-300 relative overflow-hidden">
+      <div className="absolute top-0 left-1/3 w-80 h-80 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
-            Get In Touch
+          <span className="text-primary-500 dark:text-primary-400 font-medium tracking-widest uppercase text-sm">Get In Touch</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4 font-display text-claude-950 dark:text-linen-100">
+            Let's Work Together
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-            Have a project in mind or want to discuss AI & Web Development? I'd love to hear from you.
+          <div className="w-16 h-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full mx-auto mb-4"></div>
+          <p className="text-claude-600 dark:text-linen-300 max-w-xl mx-auto">
+            Have a project in mind or want to discuss AI &amp; Web Development? I'd love to hear from you.
           </p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="lg:w-1/3 space-y-8"
+            className="lg:w-1/3 space-y-6"
           >
             {contactInfo.map((info, index) => (
               <motion.a
                 key={index}
                 href={info.link}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-6 p-6 rounded-2xl bg-white dark:bg-dark-800 border border-white/50 dark:border-dark-700 soft-shadow group transition-all"
+                className="flex items-center gap-5 p-6 rounded-2xl bg-white dark:bg-dark-800 border border-linen-200 dark:border-dark-700 soft-shadow group transition-all"
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${info.color} dark:bg-opacity-20`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${info.color}`}>
                   {info.icon}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-accent-900 dark:text-white font-display">{info.title}</h3>
-                  <p className="text-accent-600 dark:text-cream-300 font-sans">{info.value}</p>
+                  <h3 className="text-lg font-bold text-claude-900 dark:text-white font-display">{info.title}</h3>
+                  <p className="text-claude-600 dark:text-linen-300 font-sans text-sm">{info.value}</p>
                 </div>
               </motion.a>
             ))}
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="lg:w-2/3"
           >
-            <form ref={form} onSubmit={sendEmail} className="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-white/50 dark:border-dark-700 soft-shadow">
+            <form ref={form} onSubmit={sendEmail} className="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-linen-200 dark:border-dark-700 soft-shadow">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="user_name" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Name</label>
+                  <label htmlFor="user_name" className="block text-sm font-medium text-claude-700 dark:text-linen-300 mb-2">Name</label>
                   <input
                     type="text"
                     id="user_name"
                     name="user_name"
                     required
-                    className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white"
+                    className="w-full px-5 py-3 rounded-xl bg-linen-50 dark:bg-dark-900 border border-linen-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-claude-900 dark:text-white placeholder-claude-400 dark:placeholder-claude-600"
                     placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="user_email" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Email</label>
+                  <label htmlFor="user_email" className="block text-sm font-medium text-claude-700 dark:text-linen-300 mb-2">Email</label>
                   <input
                     type="email"
                     id="user_email"
                     name="user_email"
                     required
-                    className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white"
+                    className="w-full px-5 py-3 rounded-xl bg-linen-50 dark:bg-dark-900 border border-linen-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-claude-900 dark:text-white placeholder-claude-400 dark:placeholder-claude-600"
                     placeholder="your.email@example.com"
                   />
                 </div>
               </div>
-              
+
               <div className="mb-8">
-                <label htmlFor="message" className="block text-sm font-medium text-accent-700 dark:text-cream-300 mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-claude-700 dark:text-linen-300 mb-2">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows="5"
-                  className="w-full px-5 py-3 rounded-xl bg-cream-50 dark:bg-dark-900 border border-cream-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-accent-900 dark:text-white resize-none"
+                  className="w-full px-5 py-3 rounded-xl bg-linen-50 dark:bg-dark-900 border border-linen-200 dark:border-dark-600 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all text-claude-900 dark:text-white resize-none placeholder-claude-400 dark:placeholder-claude-600"
                   placeholder="Tell me about your project..."
                 ></textarea>
               </div>
@@ -135,23 +152,19 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary-600/20 hover:shadow-primary-600/30 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
-                  <>
-                    <Loader2 size={20} className="animate-spin" /> Sending...
-                  </>
+                  <><Loader2 size={20} className="animate-spin" /> Sending...</>
                 ) : submitStatus === 'success' ? (
                   <>Message Sent! <span className="ml-1">✅</span></>
                 ) : (
-                  <>
-                    Send Message <Send size={20} />
-                  </>
+                  <>Send Message <Send size={20} /></>
                 )}
               </button>
-              
+
               {submitStatus === 'error' && (
-                <p className="text-red-500 text-center mt-4">Failed to send message. Please try again.</p>
+                <p className="text-red-500 text-center mt-4 text-sm">Failed to send message. Please try again.</p>
               )}
             </form>
           </motion.div>

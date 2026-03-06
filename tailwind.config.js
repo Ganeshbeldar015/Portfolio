@@ -5,58 +5,74 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['"Space Grotesk"', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       colors: {
+        // Claude-inspired coral/terracotta primary
         primary: {
-          50: '#f4f9f3',
-          100: '#eef6ec',
-          200: '#deeddb',
-          300: '#c3dec0',
-          400: '#a5c89e', // Sage
-          500: '#83ad7b',
-          600: '#648e5d',
-          700: '#50724b',
-          800: '#415b3e',
-          900: '#364b34',
-          950: '#1d2a1c',
+          50:  '#fdf3ef',
+          100: '#fde4d9',
+          200: '#fbc8b3',
+          300: '#f7a384',
+          400: '#f07d56',
+          500: '#d97757',  // Claude signature coral
+          600: '#c96b47',
+          700: '#a8533a',
+          800: '#8a4331',
+          900: '#72392b',
+          950: '#3d1c16',
         },
+        // Warm sand secondary
         secondary: {
-          50: '#fcffe6',
-          100: '#f9ffc5',
-          200: '#f3ff94',
-          300: '#e9ff57',
-          400: '#dafa20',
-          500: '#bce004',
-          600: '#94b300',
-          700: '#708800',
-          800: '#5a6b06',
-          900: '#4b590b',
-          950: '#283101',
+          50:  '#faf8f4',
+          100: '#f5f0e8',
+          200: '#eae1d0',
+          300: '#d9ccb4',
+          400: '#c4b090',
+          500: '#b09672',
+          600: '#9a7e5a',
+          700: '#7f674a',
+          800: '#685640',
+          900: '#574839',
+          950: '#2e241c',
         },
-        accent: {
-          50: '#f5f7f3',
-          100: '#e8ede4',
-          200: '#d0dcc8',
-          300: '#abc29d',
-          400: '#84a273',
-          500: '#648552',
-          600: '#4f6a41',
-          700: '#5c6b45', // Olive/Earth
-          800: '#36462d',
-          900: '#2d3a26',
-          950: '#172013',
+        // Claude warm brown text tones
+        claude: {
+          50:  '#f9f7f5',
+          100: '#f0ebe4',
+          200: '#e0d5c8',
+          300: '#c9b9a6',
+          400: '#b09a84',
+          500: '#967f68',
+          600: '#7d6858',
+          700: '#67564a',
+          800: '#554841',
+          900: '#3d3530',
+          950: '#1a1714',  // near-black warm
         },
-        cream: {
-          50: '#fefce8', // Cream Background
-          100: '#fffbeb',
-          200: '#fef3c7',
+        // Warm linen background
+        linen: {
+          50:  '#faf8f5',
+          100: '#f4f0e8',
+          200: '#ede8dd',
+          300: '#e0d9cc',
+          400: '#cfc5b4',
+          500: '#bdb09f',
+          600: '#a8997f',
+          700: '#8d7f69',
+          800: '#74695a',
+          900: '#5f564d',
+          950: '#322e29',
         },
+        // Warm charcoal dark mode
         dark: {
-          900: '#1c1917', // Warm Black
-          800: '#292524',
-          700: '#44403c',
-        }
+          950: '#0f0e0c',
+          900: '#1c1a17',  // Claude dark bg
+          800: '#2a2723',
+          700: '#3d393390',
+          600: '#504c46',
+          500: '#6b655e',
+        },
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out",
@@ -64,6 +80,7 @@ export default {
         "slide-in-right": "slideInRight 0.5s ease-out",
         "bounce-slow": "bounce 3s infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "blob": "blob 7s infinite",
       },
       keyframes: {
         fadeIn: {
@@ -77,6 +94,12 @@ export default {
         slideInRight: {
           "0%": { transform: "translateX(20px)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        blob: {
+          "0%":   { transform: "translate(0px,0px) scale(1)" },
+          "33%":  { transform: "translate(30px,-50px) scale(1.1)" },
+          "66%":  { transform: "translate(-20px,20px) scale(0.9)" },
+          "100%": { transform: "translate(0px,0px) scale(1)" },
         },
       },
     },
